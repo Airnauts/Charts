@@ -562,6 +562,14 @@ extension ChartDataSet: RangeReplaceableCollection {
         self.values.removeSubrange(bounds)
     }
 
+    public func replaceSubrange<C, R>(_ subrange: R, with newElements: C)
+        where C: Collection,
+              R: RangeExpression,
+              R.Bound == Int,
+              ChartDataEntry == C.Element {
+        self.values.replaceSubrange(subrange, with: newElements)
+    }
+    
     @objc
     public func removeAll(keepingCapacity keepCapacity: Bool) {
         self.values.removeAll(keepingCapacity: keepCapacity)
